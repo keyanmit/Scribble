@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>2.4</ProductVersion>
+    <ProjectGuid>ad0697f8-3746-488a-9598-93dda5a4b9e4</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Scribble</RootNamespace>
+    <AssemblyName>Scribble</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>Scribble</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvcWebRole1\RenderingWebEndpoint.csproj">
+      <Name>RenderingWebEndpoint</Name>
+      <Project>{910b5f4f-a0a7-4b8c-b4a9-ef9b7db33f56}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>RenderingWebEndpoint</RoleName>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcWebRole2\UploadWebAPIEndpoint.csproj">
+      <Name>UploadWebAPIEndpoint</Name>
+      <Project>{48476b03-4aec-44e8-b2f4-afde19a9c4bc}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>UploadWebAPIEndpoint</RoleName>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkerRole1\EncryptionWorkerRole.csproj">
+      <Name>EncryptionWorkerRole</Name>
+      <Project>{a551ed5b-bd3d-4a07-b015-ee3172f4887e}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>EncryptionWorkerRole</RoleName>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RenderingWebEndpointContent" />
+    <Folder Include="UploadWebAPIEndpointContent" />
+    <Folder Include="EncryptionWorkerRoleContent" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RenderingWebEndpointContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UploadWebAPIEndpointContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="EncryptionWorkerRoleContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.4\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>
