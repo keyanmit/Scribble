@@ -19,6 +19,11 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
+    <ConfigurationSettings>
+      <Setting name="Scribble.ConnectionStrings.CommonStorage.DevBox" />
+      <Setting name="Scribble.QueueNames.TaskListQueue" />
+      <Setting name="Scribble.TableNames.TaskListPersistTable" />
+    </ConfigurationSettings>
   </WorkerRole>
   <WebRole name="UploadWebAPIEndpoint" vmsize="Small">
     <Sites>

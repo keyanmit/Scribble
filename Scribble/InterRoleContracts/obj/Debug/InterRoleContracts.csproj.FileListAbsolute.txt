@@ -1,0 +1,5 @@
+D:\thakali\Scribble\Scribble\InterRoleContracts\bin\Debug\InterRoleContracts.dll
+D:\thakali\Scribble\Scribble\InterRoleContracts\bin\Debug\InterRoleContracts.pdb
+D:\thakali\Scribble\Scribble\InterRoleContracts\obj\Debug\InterRoleContracts.csprojResolveAssemblyReference.cache
+D:\thakali\Scribble\Scribble\InterRoleContracts\obj\Debug\InterRoleContracts.dll
+D:\thakali\Scribble\Scribble\InterRoleContracts\obj\Debug\InterRoleContracts.pdb

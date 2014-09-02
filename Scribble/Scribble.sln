@@ -3,11 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Scribble", "Scribble\Scribble.ccproj", "{AD0697F8-3746-488A-9598-93DDA5A4B9E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebRole1", "MvcWebRole1\MvcWebRole1.csproj", "{910B5F4F-A0A7-4B8C-B4A9-EF9B7DB33F56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderingWebEndpoint", "MvcWebRole1\RenderingWebEndpoint.csproj", "{910B5F4F-A0A7-4B8C-B4A9-EF9B7DB33F56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerRole1", "WorkerRole1\WorkerRole1.csproj", "{A551ED5B-BD3D-4A07-B015-EE3172F4887E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionWorkerRole", "WorkerRole1\EncryptionWorkerRole.csproj", "{A551ED5B-BD3D-4A07-B015-EE3172F4887E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebRole2", "MvcWebRole2\MvcWebRole2.csproj", "{48476B03-4AEC-44E8-B2F4-AFDE19A9C4BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UploadWebAPIEndpoint", "MvcWebRole2\UploadWebAPIEndpoint.csproj", "{48476B03-4AEC-44E8-B2F4-AFDE19A9C4BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{7869CC87-1775-4392-865C-9A4711EBDFCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterRoleContracts", "InterRoleContracts\InterRoleContracts.csproj", "{C63B0BEC-AB05-47B0-906D-9D755ECA07E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureHelperUtils", "AzureHelperUtils\AzureHelperUtils.csproj", "{C6F82083-05C3-46A7-AA7B-E331E6F62B77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedBusinessLogic", "SharedBusinessLogic", "{BDF52655-8CF5-41EB-8DFB-DA9F6FAC7B79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScribbleBL", "ScribbleBL\ScribbleBL.csproj", "{6EFCDF55-C2AB-4F41-874E-6D2C4A4CAF85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleTestSln  - Ignore", "ConsoleTestSln  - Ignore", "{61C4B917-C57B-4F20-B115-EDBA0DD81940}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{7ACAF32E-B84F-4F32-BEB7-091DEB499810}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scribble.Test", "Scribble.Test\Scribble.Test.csproj", "{5E69E192-37E1-432C-B687-DF0783BA5ECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,8 +47,34 @@ Global
 		{48476B03-4AEC-44E8-B2F4-AFDE19A9C4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48476B03-4AEC-44E8-B2F4-AFDE19A9C4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48476B03-4AEC-44E8-B2F4-AFDE19A9C4BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C63B0BEC-AB05-47B0-906D-9D755ECA07E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63B0BEC-AB05-47B0-906D-9D755ECA07E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63B0BEC-AB05-47B0-906D-9D755ECA07E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63B0BEC-AB05-47B0-906D-9D755ECA07E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6F82083-05C3-46A7-AA7B-E331E6F62B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F82083-05C3-46A7-AA7B-E331E6F62B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F82083-05C3-46A7-AA7B-E331E6F62B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F82083-05C3-46A7-AA7B-E331E6F62B77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EFCDF55-C2AB-4F41-874E-6D2C4A4CAF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFCDF55-C2AB-4F41-874E-6D2C4A4CAF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EFCDF55-C2AB-4F41-874E-6D2C4A4CAF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EFCDF55-C2AB-4F41-874E-6D2C4A4CAF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ACAF32E-B84F-4F32-BEB7-091DEB499810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ACAF32E-B84F-4F32-BEB7-091DEB499810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ACAF32E-B84F-4F32-BEB7-091DEB499810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ACAF32E-B84F-4F32-BEB7-091DEB499810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E69E192-37E1-432C-B687-DF0783BA5ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E69E192-37E1-432C-B687-DF0783BA5ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E69E192-37E1-432C-B687-DF0783BA5ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E69E192-37E1-432C-B687-DF0783BA5ECE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C63B0BEC-AB05-47B0-906D-9D755ECA07E3} = {7869CC87-1775-4392-865C-9A4711EBDFCA}
+		{6EFCDF55-C2AB-4F41-874E-6D2C4A4CAF85} = {BDF52655-8CF5-41EB-8DFB-DA9F6FAC7B79}
+		{7ACAF32E-B84F-4F32-BEB7-091DEB499810} = {61C4B917-C57B-4F20-B115-EDBA0DD81940}
+		{5E69E192-37E1-432C-B687-DF0783BA5ECE} = {61C4B917-C57B-4F20-B115-EDBA0DD81940}
 	EndGlobalSection
 EndGlobal

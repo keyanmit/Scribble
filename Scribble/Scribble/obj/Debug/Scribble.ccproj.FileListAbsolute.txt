@@ -1,0 +1,2 @@
+D:\thakali\Scribble\Scribble\Scribble\bin\Debug\ServiceConfiguration.cscfg
+D:\thakali\Scribble\Scribble\Scribble\bin\Debug\ServiceDefinition.csdef
