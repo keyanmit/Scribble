@@ -18,15 +18,16 @@ using InterRoleContracts.Enums;
 using InterRoleContracts.Interfaces;
 using Newtonsoft.Json;
 using ScribbleBL.Persist;
+using WorkerRole1.BusinessLogic;
 
 namespace WorkerRole1
 {
-    public class WorkerRole : RoleEntryPoint
+    public class WorkTaskHandlerWorkerRole : RoleEntryPoint
     {
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
-        private CloudQueue queue;
-        private CloudTable table;
+        public static CloudQueue Queue;
+        public static CloudTable Table;
 
         public override void Run()
         {
@@ -41,11 +42,11 @@ namespace WorkerRole1
 
                 var iQueue = deploymentContext.GetQueueInstanceAsync();
                 iQueue.Wait();
-                queue = iQueue.Result;
+                Queue = iQueue.Result;
 
                 var iTable = deploymentContext.GetTableInstanceAsync();
                 iTable.Wait();
-                table = iTable.Result;
+                Table = iTable.Result;
 
                 this.RunAsync(this.cancellationTokenSource.Token).Wait();
             }
@@ -92,34 +93,10 @@ namespace WorkerRole1
             while (!cancellationToken.IsCancellationRequested)
             {
                 Trace.TraceInformation("Checking queue for Task");
-                if ((workTask = await queue.GetTaskIfAny(5)) != null)
-                {
-                    var task = workTask;                    
-                    Task.Run(async () =>
-                    {
-                        WorkTaskModel request = new WorkTaskModel();
-                        try
-                        {
-                            request = JsonConvert.DeserializeObject<WorkTaskModel>(task.AsString);
-                            request.Validate();
-
-                            switch (request.RequestType)
-                            {
-                                case TaskListEnumeration.PersistNewPaste:
-                                    await storageManager.PersistWorkTask(table, request);// request.RequestData, request.Id);
-                                    Trace.TraceInformation("Deleting processed message from the queue");
-                                    await queue.DeleteMessageAsync(workTask, cancellationToken);
-                                    break;
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Trace.TraceError("error: " + ex.Message
-                                            + "error Trace: " + ex.StackTrace
-                                            + request.ToString());
-                            queue.DeleteMessage(workTask);
-                        }                        
-                    }).Wait(cancellationToken);
+                if ((workTask = await Queue.GetTaskIfAny(5)) != null)
+                {                    
+                    var newTask = new WorkerTaskHandler(workTask, cancellationToken);
+                    await newTask.RunTask();
                 }
                 await Task.Delay(1000,cancellationToken);
             }

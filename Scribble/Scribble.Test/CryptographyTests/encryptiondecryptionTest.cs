@@ -9,28 +9,7 @@ namespace Scribble.Test.CryptographyTests
 {
     [TestClass]
     public class encryptiondecryptionTest
-    {
-        [TestMethod]
-        public void EncryptionDecryptionTest()
-        {
-            string[] testStrings = new string[] { "this is karthikeyan",
-                                                  "#include<stdio.h>int main(){int x=1;}" };
-
-            try
-            {
-
-                foreach (var testString in testStrings)
-                {
-                    var st = CryptographyHelper.GetEncryptedString(testString);
-                    var st1 = CryptographyHelper.GetDecryptedString(st);
-                    Assert.AreEqual(st1, testString);
-                }
-            }
-            catch (Exception ex)
-            {
-                Trace.TraceError(ex.Message);
-            }
-        }
+    {        
 
         [TestMethod]
         public void testCodePlexCode()
