@@ -1,15 +1,12 @@
-﻿    #region
+﻿using System;
+using System.Collections;
+using System.IO;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
-    using System;
-    using System.Collections;
-    using System.IO;
-    using System.Security.Cryptography;
-    using System.Security.Cryptography.X509Certificates;
-    using System.Text;
 
-    #endregion
-
-    
+   
 namespace ScribbleBL.PrivacyHandler
 {
         public class X509Cryptography
