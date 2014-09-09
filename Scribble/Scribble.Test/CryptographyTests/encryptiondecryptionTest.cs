@@ -10,8 +10,7 @@ namespace Scribble.Test.CryptographyTests
 {
     [TestClass]
     public class encryptiondecryptionTest
-    {
-
+    {        
         [TestMethod]
         public void testCodePlexCode()
         {
@@ -90,6 +89,39 @@ namespace Scribble.Test.CryptographyTests
             x = cryptHandler.GetEncryptedString(dak);
             y = cryptHandler.GetDecryptedString(x);
             Assert.AreEqual<string>(dak, y);
+
+        }
+
+        [TestMethod]
+        public void testEnvelopedCms()
+        {
+            var machineCertStore = new X509Store(StoreLocation.LocalMachine);
+            machineCertStore.Open(OpenFlags.ReadOnly);
+            var certs = machineCertStore.Certificates.Find(X509FindType.FindByThumbprint, "ce51edf145eea7ed912b2b5099554f68175273c7", true);
+            var cryptCert = certs[0];
+            machineCertStore.Close();
+
+            var encryptHandler = new EncryptEnvelopedMessage(cryptCert);
+            var decryptHandler = new DecryptEnvelopedMessage();
+
+            // small case
+            var dak = getContent();
+
+            var x = encryptHandler.encrypt(Encoding.Unicode.GetBytes(dak));
+            var x1 = Encoding.Unicode.GetString(x);
+            var y = decryptHandler.decrypt(Encoding.Unicode.GetBytes(x1));
+            var y1 = Encoding.Unicode.GetString(y);
+            Assert.AreEqual<string>(dak, y1);
+
+
+            //huge case
+            dak = getContent(true);
+
+            x = encryptHandler.encrypt(Encoding.Unicode.GetBytes(dak));
+            x1 = Encoding.Unicode.GetString(x);
+            y = decryptHandler.decrypt(Encoding.Unicode.GetBytes(x1));
+            y1 = Encoding.Unicode.GetString(y);
+            Assert.AreEqual<string>(dak, y1);
 
         }
 

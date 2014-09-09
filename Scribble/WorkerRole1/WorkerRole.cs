@@ -29,6 +29,8 @@ namespace WorkerRole1
         public static CloudQueue Queue;
         public static CloudTable Table;
 
+        private List<Task> tasklist; 
+       
         public override void Run()
         {
             Trace.TraceInformation("WorkerRole1 is running");
@@ -84,7 +86,7 @@ namespace WorkerRole1
         }
 
         private async Task RunAsync(CancellationToken cancellationToken)
-        {
+        {            
             // TODO: Replace the following with your own logic.
             CloudQueueMessage workTask = null;
                         
@@ -97,7 +99,8 @@ namespace WorkerRole1
                 {                    
                     var newTask = new WorkerTaskHandler(workTask, cancellationToken);
                     await newTask.RunTask();
-                }
+                    //tasklist.Add(newTask);
+                }                
                 await Task.Delay(1000,cancellationToken);
             }
         }

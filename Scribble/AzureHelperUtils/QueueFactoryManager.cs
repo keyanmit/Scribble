@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,19 @@ namespace AzureHelperUtils
     {
         public static async Task<CloudQueue>  GetQueueInstanceAsync(this DeploymentContext context)
         {
-            var storageAccount = CloudStorageAccount.Parse(((StorageContext)context).StorageConString);
-            var queueManager = storageAccount.CreateCloudQueueClient();
-            var queueInstance = queueManager.GetQueueReference(((StorageContext)context).QueueName);
-            await queueInstance.CreateIfNotExistsAsync();
-            return queueInstance;
+            try
+            {
+                var storageAccount = CloudStorageAccount.Parse(((StorageContext) context).StorageConString);
+                var queueManager = storageAccount.CreateCloudQueueClient();
+                var queueInstance = queueManager.GetQueueReference(((StorageContext) context).QueueName);
+                await queueInstance.CreateIfNotExistsAsync();
+                return queueInstance;
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.Message);
+                throw;
+            }
         }
     }
 }

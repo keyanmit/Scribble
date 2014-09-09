@@ -86,3 +86,11 @@ D:\thakali\Scribble\Scribble\MvcWebRole2\bin\zh-Hant\System.Spatial.resources.dl
 D:\thakali\Scribble\Scribble\MvcWebRole2\obj\Debug\UploadWebAPIEndpoint.csprojResolveAssemblyReference.cache
 D:\thakali\Scribble\Scribble\MvcWebRole2\obj\Debug\MvcWebRole2.dll
 D:\thakali\Scribble\Scribble\MvcWebRole2\obj\Debug\MvcWebRole2.pdb
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\AzureHelperUtils.dll
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\InterRoleContracts.dll
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\ScribbleBL.dll
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\WorkerRole1.dll
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\AzureHelperUtils.pdb
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\InterRoleContracts.pdb
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\ScribbleBL.pdb
+D:\thakali\Scribble\Scribble\MvcWebRole2\bin\WorkerRole1.pdb

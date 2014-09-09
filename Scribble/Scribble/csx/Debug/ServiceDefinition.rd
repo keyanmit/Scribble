@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Scribble" generation="1" functional="0" release="0" Id="9040094a-82ad-4ed5-af07-1dba74c67574" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Scribble" generation="1" functional="0" release="0" Id="4873ba6e-050e-42ee-bef8-b200537fd4de" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="ScribbleGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -53,6 +53,21 @@
         <aCS name="UploadWebAPIEndpoint:Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" defaultValue="">
           <maps>
             <mapMoniker name="/Scribble/ScribbleGroup/MapUploadWebAPIEndpoint:Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+          </maps>
+        </aCS>
+        <aCS name="UploadWebAPIEndpoint:Scribble.ConnectionStrings.CommonStorage.DevBox" defaultValue="">
+          <maps>
+            <mapMoniker name="/Scribble/ScribbleGroup/MapUploadWebAPIEndpoint:Scribble.ConnectionStrings.CommonStorage.DevBox" />
+          </maps>
+        </aCS>
+        <aCS name="UploadWebAPIEndpoint:Scribble.QueueNames.TaskListQueue" defaultValue="">
+          <maps>
+            <mapMoniker name="/Scribble/ScribbleGroup/MapUploadWebAPIEndpoint:Scribble.QueueNames.TaskListQueue" />
+          </maps>
+        </aCS>
+        <aCS name="UploadWebAPIEndpoint:Scribble.TableNames.TaskListPersistTable" defaultValue="">
+          <maps>
+            <mapMoniker name="/Scribble/ScribbleGroup/MapUploadWebAPIEndpoint:Scribble.TableNames.TaskListPersistTable" />
           </maps>
         </aCS>
         <aCS name="UploadWebAPIEndpointInstances" defaultValue="[1,1,1]">
@@ -114,6 +129,21 @@
             <aCSMoniker name="/Scribble/ScribbleGroup/UploadWebAPIEndpoint/Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
           </setting>
         </map>
+        <map name="MapUploadWebAPIEndpoint:Scribble.ConnectionStrings.CommonStorage.DevBox" kind="Identity">
+          <setting>
+            <aCSMoniker name="/Scribble/ScribbleGroup/UploadWebAPIEndpoint/Scribble.ConnectionStrings.CommonStorage.DevBox" />
+          </setting>
+        </map>
+        <map name="MapUploadWebAPIEndpoint:Scribble.QueueNames.TaskListQueue" kind="Identity">
+          <setting>
+            <aCSMoniker name="/Scribble/ScribbleGroup/UploadWebAPIEndpoint/Scribble.QueueNames.TaskListQueue" />
+          </setting>
+        </map>
+        <map name="MapUploadWebAPIEndpoint:Scribble.TableNames.TaskListPersistTable" kind="Identity">
+          <setting>
+            <aCSMoniker name="/Scribble/ScribbleGroup/UploadWebAPIEndpoint/Scribble.TableNames.TaskListPersistTable" />
+          </setting>
+        </map>
         <map name="MapUploadWebAPIEndpointInstances" kind="Identity">
           <setting>
             <sCSPolicyIDMoniker name="/Scribble/ScribbleGroup/UploadWebAPIEndpointInstances" />
@@ -168,6 +198,9 @@
             </componentports>
             <settings>
               <aCS name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" defaultValue="" />
+              <aCS name="Scribble.ConnectionStrings.CommonStorage.DevBox" defaultValue="" />
+              <aCS name="Scribble.QueueNames.TaskListQueue" defaultValue="" />
+              <aCS name="Scribble.TableNames.TaskListPersistTable" defaultValue="" />
               <aCS name="__ModelData" defaultValue="&lt;m role=&quot;UploadWebAPIEndpoint&quot; xmlns=&quot;urn:azure:m:v1&quot;&gt;&lt;r name=&quot;EncryptionWorkerRole&quot; /&gt;&lt;r name=&quot;RenderingWebEndpoint&quot;&gt;&lt;e name=&quot;Endpoint1&quot; /&gt;&lt;/r&gt;&lt;r name=&quot;UploadWebAPIEndpoint&quot;&gt;&lt;e name=&quot;Endpoint1&quot; /&gt;&lt;/r&gt;&lt;/m&gt;" />
             </settings>
             <resourcereferences>
@@ -196,14 +229,14 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="c44f6b8f-c312-401b-9bd7-cce602a0dac9" ref="Microsoft.RedDog.Contract\ServiceContract\ScribbleContract@ServiceDefinition">
+    <implementation Id="cb45292b-3ccd-4e79-aa26-cdbacb519c14" ref="Microsoft.RedDog.Contract\ServiceContract\ScribbleContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="3e280e82-8f4d-478a-a3c6-27439293e720" ref="Microsoft.RedDog.Contract\Interface\RenderingWebEndpoint:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="dcad7434-889d-4732-ad34-00d39f735dbc" ref="Microsoft.RedDog.Contract\Interface\RenderingWebEndpoint:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/Scribble/ScribbleGroup/RenderingWebEndpoint:Endpoint1" />
           </inPort>
         </interfaceReference>
-        <interfaceReference Id="52e82069-3bfb-487f-817d-3ae741a0d98c" ref="Microsoft.RedDog.Contract\Interface\UploadWebAPIEndpoint:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="310541ec-1f17-40aa-b430-d1a438ddd89d" ref="Microsoft.RedDog.Contract\Interface\UploadWebAPIEndpoint:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/Scribble/ScribbleGroup/UploadWebAPIEndpoint:Endpoint1" />
           </inPort>

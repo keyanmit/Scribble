@@ -43,6 +43,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CommonObjects\WorkTaskModel.cs" />
     <Compile Include="Enums\EnvironmentEnum.cs" />
+    <Compile Include="Constants\HtmlConstants.cs" />
     <Compile Include="Enums\TaskListEnumeration.cs" />
     <Compile Include="Interfaces\IStorageHelper.cs" />
     <Compile Include="Interfaces\IStorageId.cs" />
@@ -50,9 +51,7 @@
     <Compile Include="Interfaces\IUrlShortner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

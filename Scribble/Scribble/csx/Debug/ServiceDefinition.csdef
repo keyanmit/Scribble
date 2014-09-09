@@ -18,6 +18,9 @@
     </LocalResources>
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="Scribble.ConnectionStrings.CommonStorage.DevBox" />
+      <Setting name="Scribble.QueueNames.TaskListQueue" />
+      <Setting name="Scribble.TableNames.TaskListPersistTable" />
     </ConfigurationSettings>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="8080" localPort="8080" />

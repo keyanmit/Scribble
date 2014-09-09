@@ -39,5 +39,10 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
+    <ConfigurationSettings>
+      <Setting name="Scribble.ConnectionStrings.CommonStorage.DevBox" />
+      <Setting name="Scribble.TableNames.TaskListPersistTable" />
+      <Setting name="Scribble.QueueNames.TaskListQueue" />
+    </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
