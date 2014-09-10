@@ -18,19 +18,7 @@ using MvcWebRole2.BusinessLogic;
 namespace MvcWebRole2.Controllers
 {
     public class UploadController : ApiController
-    {
-        private static DeploymentContext deploymentContext;
-        private static CloudQueue queue;
-
-        public UploadController()
-        {
-            deploymentContext = new StorageContext()
-            {
-                CurrentEnvironment = EnvironmentEnum.DevBox,                
-            };
-            queue = deploymentContext.GetQueueInstanceAsync().Result;
-        }
-
+    {        
         // POST api/upload  
         [HttpPost]
         [ActionName("Upload")]
@@ -49,9 +37,27 @@ namespace MvcWebRole2.Controllers
             await formData.InputStream.ReadAsync(workTaskBytes, 0, workTaskBytes.Length);
             
             var workTask = WorkTaskHandler.GenerateWorkTaskModel(workTaskBytes, curHttpRequest.ContentEncoding);
-            await queue.WriteToQueueAsync(workTask);
+            await ScribbleResources.Queue.WriteToQueueAsync(workTask);
             
             return Request.CreateResponse(HttpStatusCode.Accepted, "super ma");
-        }        
+        }
+
+        [HttpPost]
+        [ActionName("newtask")]
+        public async Task<HttpResponseMessage> SubmitNewTask(RawWorkTaskModel taskRequest)
+        {
+            try
+            {
+                var workTask = WorkTaskHandler.GenerateWorkTaskModel(taskRequest.Data);
+                await ScribbleResources.Queue.WriteToQueueAsync(workTask);
+
+                return Request.CreateResponse(HttpStatusCode.Accepted, ScribbleResources.UrlGenerator.GetShortUrl(workTask.Id)); 
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }            
+        }
     }
 }

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AzureContracts\StorageIdentifier.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CommonObjects\RawWorkTaskModel.cs" />
     <Compile Include="CommonObjects\WorkTaskModel.cs" />
     <Compile Include="Enums\EnvironmentEnum.cs" />
     <Compile Include="Constants\HtmlConstants.cs" />

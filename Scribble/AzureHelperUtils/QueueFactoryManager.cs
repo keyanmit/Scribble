@@ -19,7 +19,10 @@ namespace AzureHelperUtils
                 var storageAccount = CloudStorageAccount.Parse(((StorageContext) context).StorageConString);
                 var queueManager = storageAccount.CreateCloudQueueClient();
                 var queueInstance = queueManager.GetQueueReference(((StorageContext) context).QueueName);
-                await queueInstance.CreateIfNotExistsAsync();
+                if (!queueInstance.Exists())
+                {
+                    await queueInstance.CreateAsync();
+                }
                 return queueInstance;
             }
             catch (Exception ex)

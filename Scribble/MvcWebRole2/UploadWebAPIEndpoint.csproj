@@ -178,6 +178,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="BusinessLogic\CustomFormatter\FormDataToWorkTaskConverter.cs" />
+    <Compile Include="BusinessLogic\CustomFormatter\MultipartFormDataMediaFormatter.cs" />
     <Compile Include="BusinessLogic\IdUrlGenerator.cs" />
     <Compile Include="BusinessLogic\WorkTaskHandler.cs" />
     <Compile Include="Controllers\HomeController.cs" />

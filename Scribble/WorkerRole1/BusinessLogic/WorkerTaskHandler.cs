@@ -29,7 +29,7 @@ namespace WorkerRole1.BusinessLogic
         public async Task RunTask()
         {
 
-            Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 var request = new WorkTaskModel();
                 try
@@ -40,9 +40,9 @@ namespace WorkerRole1.BusinessLogic
                     switch (request.RequestType)
                     {
                         case TaskListEnumeration.PersistNewPaste:
-                            await storageManager.PersistWorkTask(WorkTaskHandlerWorkerRole.Table, request);// request.RequestData, request.Id);
+                            await storageManager.PersistWorkTask(ScribbleWorkerRoleResource.Table, request);// request.RequestData, request.Id);
                             Trace.TraceInformation("Deleting processed message from the queue");
-                            await WorkTaskHandlerWorkerRole.Queue.DeleteMessageAsync(task, cancellationToken);
+                            await ScribbleWorkerRoleResource.Queue.DeleteMessageAsync(task, cancellationToken);
                             break;
                     }
                 }
@@ -51,9 +51,9 @@ namespace WorkerRole1.BusinessLogic
                     Trace.TraceError("error: " + ex.Message
                                     + "error Trace: " + ex.StackTrace
                                     + request.ToString());
-                    WorkTaskHandlerWorkerRole.Queue.DeleteMessage(task);
+                    ScribbleWorkerRoleResource.Queue.DeleteMessage(task);
                 }
-            },cancellationToken).Wait(cancellationToken);
+            },cancellationToken);
         }
     }
 }

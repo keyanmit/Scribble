@@ -25,9 +25,7 @@ namespace WorkerRole1
     public class WorkTaskHandlerWorkerRole : RoleEntryPoint
     {
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
-        public static CloudQueue Queue;
-        public static CloudTable Table;
+        private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);        
 
         private List<Task> tasklist; 
        
@@ -36,21 +34,11 @@ namespace WorkerRole1
             Trace.TraceInformation("WorkerRole1 is running");
 
             try
-            {
-                var deploymentContext = new StorageContext()
+            {                                
+                Task.Factory.StartNew(async () =>
                 {
-                    CurrentEnvironment = EnvironmentEnum.DevBox
-                };
-
-                var iQueue = deploymentContext.GetQueueInstanceAsync();
-                iQueue.Wait();
-                Queue = iQueue.Result;
-
-                var iTable = deploymentContext.GetTableInstanceAsync();
-                iTable.Wait();
-                Table = iTable.Result;
-
-                this.RunAsync(this.cancellationTokenSource.Token).Wait();
+                    await this.RunAsync(this.cancellationTokenSource.Token);
+                },TaskCreationOptions.LongRunning).Wait();
             }
             finally
             {
@@ -88,14 +76,12 @@ namespace WorkerRole1
         private async Task RunAsync(CancellationToken cancellationToken)
         {            
             // TODO: Replace the following with your own logic.
-            CloudQueueMessage workTask = null;
-                        
-            var storageManager = new AzurePersistHelper();
+            CloudQueueMessage workTask = null;                                   
 
             while (!cancellationToken.IsCancellationRequested)
             {
                 Trace.TraceInformation("Checking queue for Task");
-                if ((workTask = await Queue.GetTaskIfAny(5)) != null)
+                if ((workTask = await ScribbleWorkerRoleResource.Queue.GetTaskIfAny(5)) != null)
                 {                    
                     var newTask = new WorkerTaskHandler(workTask, cancellationToken);
                     await newTask.RunTask();
@@ -103,6 +89,28 @@ namespace WorkerRole1
                 }                
                 await Task.Delay(1000,cancellationToken);
             }
+        }
+    }
+
+    public class ScribbleWorkerRoleResource
+    {
+        public static CloudQueue Queue;
+        public static CloudTable Table;
+
+        static ScribbleWorkerRoleResource()
+        {
+            DeploymentContext deploymentContext = new StorageContext()
+            {
+                CurrentEnvironment = EnvironmentEnum.DevBox
+            };
+
+            var tableTask = deploymentContext.GetTableInstanceAsync();
+            var queueTask = deploymentContext.GetQueueInstanceAsync();
+            tableTask.Wait();
+            queueTask.Wait();
+
+            Table = tableTask.Result;
+            Queue = queueTask.Result;
         }
     }
 }

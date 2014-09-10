@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Scribble" generation="1" functional="0" release="0" Id="4873ba6e-050e-42ee-bef8-b200537fd4de" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Scribble" generation="1" functional="0" release="0" Id="a964e18a-e8dc-4dc0-b706-2cc02c5b1334" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="ScribbleGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -229,14 +229,14 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="cb45292b-3ccd-4e79-aa26-cdbacb519c14" ref="Microsoft.RedDog.Contract\ServiceContract\ScribbleContract@ServiceDefinition">
+    <implementation Id="2b650580-4e26-4c09-96ca-2625c8117e92" ref="Microsoft.RedDog.Contract\ServiceContract\ScribbleContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="dcad7434-889d-4732-ad34-00d39f735dbc" ref="Microsoft.RedDog.Contract\Interface\RenderingWebEndpoint:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="2b67b9e5-13cb-4cbd-81f4-1f7cb94d22f2" ref="Microsoft.RedDog.Contract\Interface\RenderingWebEndpoint:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/Scribble/ScribbleGroup/RenderingWebEndpoint:Endpoint1" />
           </inPort>
         </interfaceReference>
-        <interfaceReference Id="310541ec-1f17-40aa-b430-d1a438ddd89d" ref="Microsoft.RedDog.Contract\Interface\UploadWebAPIEndpoint:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="80fd4172-734e-4e37-baaa-bca73cf17a96" ref="Microsoft.RedDog.Contract\Interface\UploadWebAPIEndpoint:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/Scribble/ScribbleGroup/UploadWebAPIEndpoint:Endpoint1" />
           </inPort>

@@ -29,9 +29,23 @@ namespace MvcWebRole2.BusinessLogic
             }
             catch (Exception ex)
             {
-                Trace.TraceError("Parsing request byte failed for: " + newTask + " input char seq :"+WorkTaskAsBytes);
+                Trace.TraceError("Parsing request byte failed for: " + newTask + " input char seq :" + WorkTaskAsBytes);
                 throw ex;
             }
+        }
+
+        public static WorkTaskModel GenerateWorkTaskModel(string workTaskAsString)
+        {
+            var newTask = new WorkTaskModel()
+            {
+                RequestId = Guid.NewGuid(),
+                RequestType = TaskListEnumeration.PersistNewPaste
+            };
+
+
+            newTask.Id = IdUrlGenerator.GetIdForRequest();
+            newTask.RequestData = workTaskAsString;
+            return newTask;
         }
     }
 }

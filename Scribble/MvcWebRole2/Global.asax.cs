@@ -6,6 +6,13 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AzureHelperUtils;
+using AzureHelperUtils.CommonObjects;
+using InterRoleContracts.Enums;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using MvcWebRole2.BusinessLogic.CustomFormatter;
+using ScribbleBL.UrlGeneration;
 
 namespace MvcWebRole2
 {
@@ -22,6 +29,27 @@ namespace MvcWebRole2
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            GlobalConfiguration.Configuration.Formatters.Add(new MultipartFormDataMediaFormatter());
+        }
+    }
+
+    public class ScribbleResources
+    {
+        public static CloudQueue Queue;
+        public static Base62ShortUrlFactory UrlGenerator; 
+
+        static ScribbleResources()
+        {
+            DeploymentContext deploymentContext = new StorageContext()
+            {
+                CurrentEnvironment = EnvironmentEnum.DevBox
+            };
+            var tmp = deploymentContext.GetQueueInstanceAsync();
+            tmp.Wait();
+            Queue = tmp.Result;
+
+            UrlGenerator = new Base62ShortUrlFactory();
         }
     }
 }
