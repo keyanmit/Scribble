@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using InterRoleContracts.Interfaces;
 
@@ -9,6 +10,8 @@ namespace ScribbleBL.UrlGeneration
 {
     public class Base62ShortUrlFactory : IUrlShortner
     {
+        private Regex regex = new Regex("[a-zA-Z0-9]*"); 
+
         public static UInt32 UrlBase { get; private set; }        
 
         static Base62ShortUrlFactory()
@@ -33,6 +36,9 @@ namespace ScribbleBL.UrlGeneration
 
         public ulong GetUrlId(string url)
         {
+            if(ValidateUrl(url))
+                throw new Exception("Url is invalid! " + url);
+
             UInt64 urlId = 0;
             foreach (char t in url)
             {
@@ -45,6 +51,11 @@ namespace ScribbleBL.UrlGeneration
                 urlId += (UInt32)chVal;
             }
             return urlId;
+        }
+
+        public bool ValidateUrl(string url)
+        {
+            return regex.Replace(url, string.Empty).Equals(string.Empty);
         }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="CryptographyTests\encryptiondecryptionTest.cs" />
     <Compile Include="ScribbleBLTest\Base62ShortUrlFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScribbleBLTest\UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzureHelperUtils\AzureHelperUtils.csproj">
