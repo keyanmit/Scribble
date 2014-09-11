@@ -101,3 +101,9 @@ D:\thakali\Scribble\Scribble\MvcWebRole1\bin\zh-Hant\System.Spatial.resources.dl
 D:\thakali\Scribble\Scribble\MvcWebRole1\obj\Debug\RenderingWebEndpoint.csprojResolveAssemblyReference.cache
 D:\thakali\Scribble\Scribble\MvcWebRole1\obj\Debug\MvcWebRole1.dll
 D:\thakali\Scribble\Scribble\MvcWebRole1\obj\Debug\MvcWebRole1.pdb
+D:\thakali\Scribble\Scribble\MvcWebRole1\bin\AzureHelperUtils.dll
+D:\thakali\Scribble\Scribble\MvcWebRole1\bin\InterRoleContracts.dll
+D:\thakali\Scribble\Scribble\MvcWebRole1\bin\ScribbleBL.dll
+D:\thakali\Scribble\Scribble\MvcWebRole1\bin\AzureHelperUtils.pdb
+D:\thakali\Scribble\Scribble\MvcWebRole1\bin\InterRoleContracts.pdb
+D:\thakali\Scribble\Scribble\MvcWebRole1\bin\ScribbleBL.pdb

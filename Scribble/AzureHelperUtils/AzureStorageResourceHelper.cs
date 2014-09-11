@@ -23,5 +23,20 @@ namespace AzureHelperUtils
                 Trace.TraceError("Insert failed " + ex);
             }
         }
+
+        public static async Task<TableResult> GetDataAsync(this CloudTable table, string rowKey, string partKey)
+        {
+            var readyOp = TableOperation.Retrieve(rowKey, partKey);
+            try
+            {
+                return await table.ExecuteAsync(readyOp);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+ 
     }
 }

@@ -15,6 +15,14 @@ namespace Scribble.Test.ScribbleBLTest
         }
 
         [TestMethod]
+        public void TestUrlStuff()
+        {
+            var x= shortUrlGenerator.GetShortUrl(37790);
+            var y = shortUrlGenerator.GetUrlId(x);
+            Assert.AreEqual(y,(ulong)37790); 
+        }
+
+        [TestMethod]
         public void TestGetShortUrl()
         {
             //creation of req objects            

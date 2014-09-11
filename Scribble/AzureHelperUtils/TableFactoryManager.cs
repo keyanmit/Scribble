@@ -16,7 +16,10 @@ namespace AzureHelperUtils
             var storageAccount = CloudStorageAccount.Parse(((StorageContext)context).StorageConString);
             var tableManager = storageAccount.CreateCloudTableClient();
             var tableInstance = tableManager.GetTableReference(((StorageContext)context).TableName);
-            await tableInstance.CreateIfNotExistsAsync();
+            if (!tableInstance.Exists())
+            {
+                await tableInstance.CreateAsync();
+            }
             return tableInstance;
         }
     }

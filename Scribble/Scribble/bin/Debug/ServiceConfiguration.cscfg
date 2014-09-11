@@ -13,6 +13,9 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Scribble.ConnectionStrings.CommonStorage.DevBox" value="UseDevelopmentStorage=true" />
+      <Setting name="Scribble.QueueNames.TaskListQueue" value="scribbleworktaskqueue" />
+      <Setting name="Scribble.TableNames.TaskListPersistTable" value="scribbleworktaskpersisttable" />
     </ConfigurationSettings>
   </Role>
   <Role name="EncryptionWorkerRole">

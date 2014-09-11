@@ -18,6 +18,12 @@ namespace MvcWebRole1
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "PasteRoute",
+                url: "paste/{url}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
         }
     }
 }

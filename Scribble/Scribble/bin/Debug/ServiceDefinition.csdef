@@ -23,6 +23,11 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
+    <ConfigurationSettings>
+      <Setting name="Scribble.ConnectionStrings.CommonStorage.DevBox" />
+      <Setting name="Scribble.QueueNames.TaskListQueue" />
+      <Setting name="Scribble.TableNames.TaskListPersistTable" />
+    </ConfigurationSettings>
   </WebRole>
   <WorkerRole name="EncryptionWorkerRole" vmsize="Small">
     <Imports>
