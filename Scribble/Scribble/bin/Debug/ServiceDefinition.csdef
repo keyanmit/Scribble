@@ -28,6 +28,11 @@
       <Setting name="Scribble.QueueNames.TaskListQueue" />
       <Setting name="Scribble.TableNames.TaskListPersistTable" />
     </ConfigurationSettings>
+    <Contents>
+      <Content destination=".\">
+        <SourceDirectory path="D:\thakali\Scribble\Scribble\Scribble\rcf\Debug\RenderingWebEndpointContent\" />
+      </Content>
+    </Contents>
   </WebRole>
   <WorkerRole name="EncryptionWorkerRole" vmsize="Small">
     <Imports>
@@ -38,6 +43,11 @@
       <Setting name="Scribble.QueueNames.TaskListQueue" />
       <Setting name="Scribble.TableNames.TaskListPersistTable" />
     </ConfigurationSettings>
+    <Contents>
+      <Content destination=".\">
+        <SourceDirectory path="D:\thakali\Scribble\Scribble\Scribble\rcf\Debug\EncryptionWorkerRoleContent\" />
+      </Content>
+    </Contents>
   </WorkerRole>
   <WebRole name="UploadWebAPIEndpoint" vmsize="Small">
     <Sites>
@@ -58,5 +68,10 @@
       <Setting name="Scribble.TableNames.TaskListPersistTable" />
       <Setting name="Scribble.QueueNames.TaskListQueue" />
     </ConfigurationSettings>
+    <Contents>
+      <Content destination=".\">
+        <SourceDirectory path="D:\thakali\Scribble\Scribble\Scribble\rcf\Debug\UploadWebAPIEndpointContent\" />
+      </Content>
+    </Contents>
   </WebRole>
 </ServiceDefinition>

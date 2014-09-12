@@ -36,7 +36,7 @@ namespace ScribbleBL.UrlGeneration
 
         public ulong GetUrlId(string url)
         {
-            if(ValidateUrl(url))
+            if(!ValidateUrl(url))
                 throw new Exception("Url is invalid! " + url);
 
             UInt64 urlId = 0;
@@ -55,7 +55,7 @@ namespace ScribbleBL.UrlGeneration
 
         public bool ValidateUrl(string url)
         {
-            return regex.Replace(url, string.Empty).Equals(string.Empty);
+            return url!= null && regex.Replace(url, string.Empty).Equals(string.Empty);
         }
     }
 }

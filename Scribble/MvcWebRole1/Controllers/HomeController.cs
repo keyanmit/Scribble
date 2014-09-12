@@ -14,19 +14,21 @@ namespace MvcWebRole1.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            if (ScribbleWebEndpointResources.UrlFactory.ValidateUrl(url))
+            if (string.IsNullOrEmpty(url))
+            {
+                return View();
+            }
+
+            if (!ScribbleWebEndpointResources.UrlFactory.ValidateUrl(url))
             {
                 throw new Exception("url is invalid");
             }
 
-            if (!string.IsNullOrEmpty(url))
-            {
-                //home page. get user input task flow.
-                var workTask = await StorageHandler.GetWorkTask(url);
-            }
-            return View();
+            //home page. get user input task flow.
+            var workTask = await StorageHandler.GetWorkTask(url);
+            return View(workTask);
         }
-        
+
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

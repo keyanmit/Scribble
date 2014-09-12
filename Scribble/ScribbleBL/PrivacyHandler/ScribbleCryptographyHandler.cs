@@ -12,6 +12,11 @@ namespace ScribbleBL.PrivacyHandler
         private EncryptEnvelopedMessage encryptionHandler;
         private DecryptEnvelopedMessage decryptionHandler;
 
+        public ScribbleCryptographyHandler()
+        {
+            //can be used in decryption.
+            decryptionHandler = new DecryptEnvelopedMessage();
+        }
         public ScribbleCryptographyHandler(X509Certificate2 cert)
         {
             encryptionHandler = new EncryptEnvelopedMessage(cert);
@@ -20,6 +25,9 @@ namespace ScribbleBL.PrivacyHandler
 
         public string GetEncryptedString(string data)
         {
+            if(encryptionHandler == null)
+                throw new Exception("Encryption handler not initialized");
+
             var tmp = encryptionHandler.encrypt(Encoding.Unicode.GetBytes(data));
             var base64EncodedString = Convert.ToBase64String(tmp);
             return base64EncodedString;

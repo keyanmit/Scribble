@@ -7,6 +7,7 @@ using AzureHelperUtils.CommonObjects;
 using InterRoleContracts.Enums;
 using Microsoft.WindowsAzure.Storage.Table;
 using ScribbleBL.BusinessLogic;
+using ScribbleBL.PrivacyHandler;
 using ScribbleBL.UrlGeneration;
 
 namespace MvcWebRole1.BusinessLogic
@@ -17,6 +18,7 @@ namespace MvcWebRole1.BusinessLogic
         public static CloudTable Table { get; set; }
         public static Base62ShortUrlFactory UrlFactory { get; set; }
         public static Base62StorageHelper StorageHelper { get; set; }
+        public static ScribbleCryptographyHandler ScribbleCryptographyHandler { get; set; }
 
         static ScribbleWebEndpointResources()
         {
@@ -31,6 +33,7 @@ namespace MvcWebRole1.BusinessLogic
 
             UrlFactory = new Base62ShortUrlFactory();
             StorageHelper = new Base62StorageHelper();
+            ScribbleCryptographyHandler = new ScribbleCryptographyHandler();
         }
     }
 }

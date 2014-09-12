@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
+@model InterRoleContracts.CommonObjects.WorkTaskModel
+
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
@@ -42,4 +45,12 @@
         and price for your applications.
         <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
     </li>
+    
+    @if (Model != null)
+    {
+        <li class ="three">
+            <h5> content from file</h5>
+            @Model.RequestData
+        </li>
+    }
 </ol>

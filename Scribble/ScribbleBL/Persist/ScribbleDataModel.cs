@@ -14,6 +14,11 @@ namespace ScribbleBL.Persist
         public Guid RequestId { get; set; }
         public UInt64 UrlId { get; set; }
 
+        public ScribblePersistDataModel()
+        {
+           // redundant. but mandated by azure storage sdk 
+        }
+
         public ScribblePersistDataModel(StorageIdentifier storageIdFromUrl)
         {
             this.PartitionKey = storageIdFromUrl.Partitionkey.ToString();

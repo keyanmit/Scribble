@@ -133,5 +133,29 @@ namespace Scribble.Test.CryptographyTests
             var st = getStringFromBytes(stBytes);
             return st;
         }
+
+        [TestMethod]
+        public void TestScribbleEncHandler()
+        {
+            var machineCertStore = new X509Store(StoreLocation.LocalMachine);
+            machineCertStore.Open(OpenFlags.ReadOnly);
+            var certs = machineCertStore.Certificates.Find(X509FindType.FindByThumbprint, "ce51edf145eea7ed912b2b5099554f68175273c7", true);
+            var cryptCert = certs[0];
+            machineCertStore.Close();
+
+            var cryptBro = new ScribbleCryptographyHandler(cryptCert);
+
+            var w = getContent();
+            var x = cryptBro.GetEncryptedString(w);
+            var y = cryptBro.GetDecryptedString(x);
+            Assert.AreEqual(w,y);
+
+            var cryptBroDecrypt = new ScribbleCryptographyHandler();
+            y =
+                cryptBroDecrypt.GetDecryptedString(
+                    "MIIBvAYJKoZIhvcNAQcDoIIBrTCCAakCAQAxggFlMIIBYQIBADBJMDUxMzAxBgNVBAMTKktBUlRISU1VLUxFTk9WTy5mYXJlYXN0LmNvcnAubWljcm9zb2Z0LmNvbQIQaWS6+2JgsYtHPz99I8AKozANBgkqhkiG9w0BAQEFAASCAQChNV8J1A8ySHq/RuH5yqwK7WwDBi08hKSnsud0tcQv/Q/0AMgd714WROXoYkpJMdqHRhwPfAJsa0LSoVq3F0Of7/KD40q7H7O9SGGDCNNFQx8FJ1IfDHwA6BtP7ekRrZ6w3W7X1bVlpxjdT7X0wrXBiiHQWaCLQZkQjCea+zpjbGw0+pRZGhQnGGsutldoEBroRbHQgTNu05/CdetrKVnohTZJrawcwZ1d4uSoWXY/eUjLVf8SFuB5lNZyCcSISt2NTB91HYewVtroHINt9akUR7FsYlC41QNQtBr5GVn42odh3TpjcziV8hCkYOvQIZBL+0jyoCcZdommbCnneAe0MDsGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIsA/h4MuoUsSAGAkXTSEAOV/QF77ONiwUH2VqtGQFAnuKaw==");
+
+            Assert.AreEqual(y,w);
+        }
     }
 }

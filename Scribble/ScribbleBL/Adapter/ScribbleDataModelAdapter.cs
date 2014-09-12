@@ -17,7 +17,7 @@ namespace ScribbleBL.Adapter
     public class ScribbleDataModelAdapter
     {
         private static IStorageId storagehelper;
-        private static X509Cryptography cryptoHelper;
+        private static ScribbleCryptographyHandler cryptoHelper;
         private static X509Certificate2 cryptCert;
         static ScribbleDataModelAdapter()
         {
@@ -36,16 +36,16 @@ namespace ScribbleBL.Adapter
                 Trace.TraceError("Error initializing Encryption Cert." + ex.Message);
                 throw;
             }
-            
 
-            cryptoHelper = new X509Cryptography(cryptCert,true);
+
+            cryptoHelper = new ScribbleCryptographyHandler(cryptCert); //new X509Cryptography(cryptCert,true);
         }
 
         public static ScribblePersistDataModel GetScribbleDataModel(WorkTaskModel task, StorageIdentifier storageIdForRequest)
         {                         
             return new ScribblePersistDataModel(storageIdForRequest){                
                 RequestId = task.RequestId,
-                Data = cryptoHelper.EncryptString(task.RequestData),
+                Data = cryptoHelper.GetEncryptedString(task.RequestData),
                 UrlId = task.Id
             };
         }

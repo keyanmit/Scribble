@@ -24,9 +24,9 @@ namespace AzureHelperUtils
             }
         }
 
-        public static async Task<TableResult> GetDataAsync(this CloudTable table, string rowKey, string partKey)
+        public static async Task<TableResult> GetDataAsync<T>(this CloudTable table, string rowKey, string partKey) where T : TableEntity
         {
-            var readyOp = TableOperation.Retrieve(rowKey, partKey);
+            var readyOp = TableOperation.Retrieve<T>(rowKey, partKey);
             try
             {
                 return await table.ExecuteAsync(readyOp);
